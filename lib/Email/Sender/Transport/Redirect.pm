@@ -36,25 +36,29 @@ has 'intercept_prefix' => (
 
 around send_email => sub {
     my ($orig, $self, $email, $env, @rest) = @_;
-    my (@values);
+    my ($email_copy, $env_copy, @values);
 
     # copy email object to prevent changes in the original object
-    my $copy = ref($email)->new($email->as_string);
+    $email_copy = ref($email)->new($email->as_string);
+
+    # copy envelope hash reference
+    %$env_copy = %$env;
 
     for my $header ($self->redirect_headers) {
-        next unless @values = $copy->get_header($header);
+        next unless @values = $email_copy->get_header($header);
 
         if ($self->intercept_prefix) {
-            $copy->set_header($self->intercept_prefix . $header,
-                             @values);
+            $email_copy->set_header($self->intercept_prefix . $header,
+                                    @values);
         }
 
-        $copy->set_header($header);
+        $email_copy->set_header($header);
     }
 
-    $copy->set_header('To', $self->redirect_address);
+    $email_copy->set_header('To', $self->redirect_address);
+    $env_copy->{to} = [$self->redirect_address];
 
-    return $self->$orig($copy, $env, @rest);
+    return $self->$orig($email_copy, $env_copy, @rest);
 };
 
 =head1 WISDOMS
