@@ -12,6 +12,13 @@ WriteMakefile(
       ? ('LICENSE'=> 'perl')
       : ()),
     PL_FILES            => {},
+
+    META_MERGE => {
+        resources => {
+            repository => 'https://github.com/racke/Email-Sender-Transport-Redirect',
+        },
+    },
+
     PREREQ_PM => {
         'Test::More' => 0,
         'Moose' => 0,
