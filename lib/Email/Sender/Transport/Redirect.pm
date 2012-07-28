@@ -11,6 +11,23 @@ Email::Sender::Transport::Redirect - Intercept all emails and redirect them to a
 
 Version 0.0001
 
+=head1 SYNOPSIS
+
+    $transport_orig = Email::Sender::Transport::Sendmail->new;
+
+    $transport = Email::Sender::Transport::Redirect->new({transport => $transport_orig,
+                                                         redirect_address => 'shop@nitesi.com',
+                                                         });
+
+=head1 DESCRIPTION
+
+Transport wrapper for Email::Sender which intercepts all emails and redirects
+them to a specific address.
+
+This transport changes the C<To> and C<CC> header in the email and
+adds a C<X-Intercepted-To> and C<X-Intercepted-CC> header with
+the original recipients.
+
 =cut
 
 use Moose;
@@ -61,22 +78,15 @@ around send_email => sub {
     return $self->$orig($email_copy, $env_copy, @rest);
 };
 
-=head1 WISDOMS
-
-mst on #dancer IRC
-
 =head1 AUTHOR
 
-Stefan Hornburg (Racke), C<< <racke at linuxia.de> >>
+Stefan Hornburg (Racke), C<racke@linuxia.de>
 
 =head1 BUGS
 
 Please report any bugs or feature requests to C<bug-email-sender-transport-redirect at rt.cpan.org>, or through
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Email-Sender-Transport-Redirect>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
-
-
-
 
 =head1 SUPPORT
 
@@ -110,6 +120,8 @@ L<http://search.cpan.org/dist/Email-Sender-Transport-Redirect/>
 
 =head1 ACKNOWLEDGEMENTS
 
+Thanks to Matt Trout for his help regarding the initial write of this
+module on #dancer IRC.
 
 =head1 LICENSE AND COPYRIGHT
 
