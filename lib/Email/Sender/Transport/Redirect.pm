@@ -41,7 +41,6 @@ has 'redirect_address' => (is => 'ro',
 has 'redirect_headers' => (
                            is  => 'ro',
                            isa => 'ArrayRef',
-                           auto_deref => 1,
                            default    => sub { [qw/To Cc/] },
 );
 
@@ -61,7 +60,7 @@ around send_email => sub {
     # copy envelope hash reference
     %$env_copy = %$env;
 
-    for my $header ($self->redirect_headers) {
+    for my $header (@{$self->redirect_headers}) {
         next unless @values = $email_copy->get_header($header);
 
         if ($self->intercept_prefix) {
