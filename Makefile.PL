@@ -21,7 +21,8 @@ WriteMakefile(
 
     PREREQ_PM => {
         'Test::More' => 0,
-        'Moose' => 0,
+        'Moo' => 0,
+        'MooX::Types::MooseLike' => 0,
         'Email::Sender' => 0,
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
