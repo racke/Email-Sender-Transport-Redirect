@@ -21,8 +21,9 @@ WriteMakefile(
 
     PREREQ_PM => {
         'Test::More' => 0,
-        'Moose' => 0,
-        'Email::Sender' => 0,
+        'Moo' => "1.000008",
+        'MooX::Types::MooseLike' => "0.15",
+        'Email::Sender' => "1.300000",
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Email-Sender-Transport-Redirect-*' },

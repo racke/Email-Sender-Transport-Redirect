@@ -30,7 +30,8 @@ the original recipients.
 
 =cut
 
-use Moose;
+use Moo;
+use MooX::Types::MooseLike::Base qw/ArrayRef Str/;
 
 extends 'Email::Sender::Transport::Wrapper';
 
@@ -40,14 +41,14 @@ has 'redirect_address' => (is => 'ro',
 
 has 'redirect_headers' => (
                            is  => 'ro',
-                           isa => 'ArrayRef',
+                           isa => ArrayRef,
                            default    => sub { [qw/To Cc/] },
 );
 
 has 'intercept_prefix' => (
                            is => 'ro',
-                           isa => 'Str',
-                           default => sub { 'X-Intercepted-'}
+                           isa => Str,
+                           default => 'X-Intercepted-',
                           );
 
 around send_email => sub {
