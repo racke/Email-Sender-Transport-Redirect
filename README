@@ -1,62 +1,76 @@
 NAME
+
     Email::Sender::Transport::Redirect - Intercept all emails and redirect
     them to a specific address
 
 VERSION
-    Version 0.0001
+
+    Version 0.0002
 
 SYNOPSIS
-        $transport_orig = Email::Sender::Transport::Sendmail->new;
 
+        $transport_orig = Email::Sender::Transport::Sendmail->new;
+    
         $transport = Email::Sender::Transport::Redirect->new({transport => $transport_orig,
                                                              redirect_address => 'shop@nitesi.com',
                                                              });
 
 DESCRIPTION
+
     Transport wrapper for Email::Sender which intercepts all emails and
     redirects them to a specific address.
 
-    This transport changes the `To' and `CC' header in the email and adds a
-    `X-Intercepted-To' and `X-Intercepted-CC' header with the original
+    This transport changes the To and CC header in the email and adds a
+    X-Intercepted-To and X-Intercepted-CC header with the original
     recipients.
 
 AUTHOR
-    Stefan Hornburg (Racke), `racke@linuxia.de'
+
+    Stefan Hornburg (Racke), racke@linuxia.de
 
 BUGS
+
     Please report any bugs or feature requests to
-    `bug-email-sender-transport-redirect at rt.cpan.org', or through the web
+    bug-email-sender-transport-redirect at rt.cpan.org, or through the web
     interface at
-    http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Email-Sender-Transport-Re
-    direct. I will be notified, and then you'll automatically be notified of
+    http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Email-Sender-Transport-Redirect.
+    I will be notified, and then you'll automatically be notified of
     progress on your bug as I make changes.
 
 SUPPORT
+
     You can find documentation for this module with the perldoc command.
 
         perldoc Email::Sender::Transport::Redirect
 
     You can also look for information at:
 
-    * RT: CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Email-Sender-Transport-Redi
-        rect
+      * RT: CPAN's request tracker (report bugs here)
 
-    * AnnoCPAN: Annotated CPAN documentation
-        http://annocpan.org/dist/Email-Sender-Transport-Redirect
+      http://rt.cpan.org/NoAuth/Bugs.html?Dist=Email-Sender-Transport-Redirect
 
-    * CPAN Ratings
-        http://cpanratings.perl.org/d/Email-Sender-Transport-Redirect
+      * AnnoCPAN: Annotated CPAN documentation
 
-    * Search CPAN
-        http://search.cpan.org/dist/Email-Sender-Transport-Redirect/
+      http://annocpan.org/dist/Email-Sender-Transport-Redirect
+
+      * CPAN Ratings
+
+      http://cpanratings.perl.org/d/Email-Sender-Transport-Redirect
+
+      * Search CPAN
+
+      http://search.cpan.org/dist/Email-Sender-Transport-Redirect/
 
 ACKNOWLEDGEMENTS
+
+    Thanks to Peter Mottram for the port to Moo (GH #1).
+
     Thanks to Matt Trout for his help regarding the initial write of this
     module on #dancer IRC.
 
 LICENSE AND COPYRIGHT
-    Copyright 2012 Stefan Hornburg (Racke).
+
+    Copyright 2012-2015 Stefan Hornburg (Racke).
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of either: the GNU General Public License as published
