@@ -120,12 +120,14 @@ L<http://search.cpan.org/dist/Email-Sender-Transport-Redirect/>
 
 =head1 ACKNOWLEDGEMENTS
 
+Thanks to Peter Mottram for the port to Moo (GH #1).
+
 Thanks to Matt Trout for his help regarding the initial write of this
 module on #dancer IRC.
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2012 Stefan Hornburg (Racke).
+Copyright 2012-2015 Stefan Hornburg (Racke).
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published
