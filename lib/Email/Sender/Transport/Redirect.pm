@@ -28,6 +28,31 @@ This transport changes the C<To> and C<CC> header in the email and
 adds a C<X-Intercepted-To> and C<X-Intercepted-CC> header with
 the original recipients.
 
+=head1 ATTRIBUTES
+
+=head2 redirect_address
+
+Recipient email address for redirected emails.
+
+=head2 redirect_headers
+
+Email headers to be changed, defaults to an
+array reference containing:
+
+=over 4
+
+=item To
+
+=item CC
+
+=back
+
+=head2 intercept_prefix
+
+Prefix for headers which show the original recipients.
+
+Defaults to C<X-Intercepted->.
+
 =cut
 
 use Moo;
