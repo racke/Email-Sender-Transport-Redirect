@@ -76,6 +76,14 @@ has 'intercept_prefix' => (
                            default => 'X-Intercepted-',
                           );
 
+=head1 METHOD MODIFIERS
+
+=head2 send_email
+
+Wraps around original method and changes email headers.
+
+=cut
+
 around send_email => sub {
     my ($orig, $self, $email, $env, @rest) = @_;
     my ($email_copy, $env_copy, @values);
