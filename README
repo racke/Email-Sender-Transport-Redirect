@@ -5,7 +5,7 @@ NAME
 
 VERSION
 
-    Version 0.0002
+    Version 0.0003
 
 SYNOPSIS
 
@@ -24,42 +24,35 @@ DESCRIPTION
     X-Intercepted-To and X-Intercepted-CC header with the original
     recipients.
 
+ATTRIBUTES
+
+ redirect_address
+
+    Recipient email address for redirected emails.
+
+ redirect_headers
+
+    Email headers to be changed, defaults to an array reference containing:
+
+    To
+
+    CC
+
+ intercept_prefix
+
+    Prefix for headers which show the original recipients.
+
+    Defaults to X-Intercepted-.
+
+METHOD MODIFIERS
+
+ send_email
+
+    Wraps around original method and changes email headers.
+
 AUTHOR
 
     Stefan Hornburg (Racke), racke@linuxia.de
-
-BUGS
-
-    Please report any bugs or feature requests to
-    bug-email-sender-transport-redirect at rt.cpan.org, or through the web
-    interface at
-    http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Email-Sender-Transport-Redirect.
-    I will be notified, and then you'll automatically be notified of
-    progress on your bug as I make changes.
-
-SUPPORT
-
-    You can find documentation for this module with the perldoc command.
-
-        perldoc Email::Sender::Transport::Redirect
-
-    You can also look for information at:
-
-      * RT: CPAN's request tracker (report bugs here)
-
-      http://rt.cpan.org/NoAuth/Bugs.html?Dist=Email-Sender-Transport-Redirect
-
-      * AnnoCPAN: Annotated CPAN documentation
-
-      http://annocpan.org/dist/Email-Sender-Transport-Redirect
-
-      * CPAN Ratings
-
-      http://cpanratings.perl.org/d/Email-Sender-Transport-Redirect
-
-      * Search CPAN
-
-      http://search.cpan.org/dist/Email-Sender-Transport-Redirect/
 
 ACKNOWLEDGEMENTS
 

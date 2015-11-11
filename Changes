@@ -1,5 +1,18 @@
 Revision history for Email::Sender::Transport::Redirect
 
+0.0003 Wed Nov 11 09:22:16 2015 CET
+
+    [BUG FIXES]
+
+    * Fix POD coverage (Stefan Hornburg / Racke, GH #3).
+    * Run POD coverage test only on RELEASE_TESTING = 1
+      (Stefan Hornburg / Racke, GH #2).
+
+    [ENHANCEMENTS]
+
+    * Add bugtracker and IRC resources to Makefile.PL.
+    * Remove stale bugs and support section.
+
 0.0002 Mon Nov  9 15:25:11 2015 CET
 
     [ENHANCEMENTS]
