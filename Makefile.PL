@@ -15,7 +15,9 @@ WriteMakefile(
 
     META_MERGE => {
         resources => {
-            repository => 'https://github.com/racke/Email-Sender-Transport-Redirect',
+            repository => 'https://github.com/racke/Email-Sender-Transport-Redirect.git',
+            bugtracker => 'https://github.com/racke/Email-Sender-Transport-Redirect/issues',
+            IRC => 'irc://irc.freenode.net/#interchange',
         },
     },
 
