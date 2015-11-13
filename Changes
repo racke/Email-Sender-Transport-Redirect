@@ -1,5 +1,12 @@
 Revision history for Email::Sender::Transport::Redirect
 
+0.0004 Fri Nov 13 09:38:44 2015 CET
+
+    [BUG FIXES]
+
+    * Fix Moo prerequisite for using scalar defaults
+      (Peter Mottram, GH #4, #5).
+
 0.0003 Wed Nov 11 09:22:16 2015 CET
 
     [BUG FIXES]
