@@ -23,7 +23,7 @@ WriteMakefile(
 
     PREREQ_PM => {
         'Test::More' => 0,
-        'Moo' => "1.000008",
+        'Moo' => "1.001000",
         'MooX::Types::MooseLike' => "0.15",
         'Email::Sender' => "1.300000",
     },
