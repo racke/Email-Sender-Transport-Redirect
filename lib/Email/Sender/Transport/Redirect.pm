@@ -56,7 +56,7 @@ Defaults to C<X-Intercepted->.
 =cut
 
 use Moo;
-use MooX::Types::MooseLike::Base qw/ArrayRef Str/;
+use Types::Standard qw/ArrayRef Str/;
 
 extends 'Email::Sender::Transport::Wrapper';
 
