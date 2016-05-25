@@ -32,7 +32,9 @@ the original recipients.
 
 =head2 redirect_address
 
-Recipient email address for redirected emails.
+Recipient email address for redirected emails. This value, which can
+be either a string or an hashref, is passed to the
+L<Email::Sender::Transport::Redirect::Recipients> constructor.
 
 =head2 redirect_headers
 
@@ -115,9 +117,14 @@ around send_email => sub {
         my @replace = map { $self->recipients->replace($_) } @values;
         $email_copy->set_header($header, @replace);
     }
-
-    $env_copy->{to} = [ $self->recipients->to ];
-
+    # if the to was set in the envelope, replace those as well
+    if ($env_copy->{to} and @{$env_copy->{to}}) {
+        $env_copy->{to} = [ map { $self->recipients->replace($_) } @{$env_copy->{to}} ]
+    }
+    # no to in the envelope? then set it
+    else {
+        $env_copy->{to} = [ $self->recipients->to ];
+    }
     return $self->$orig($email_copy, $env_copy, @rest);
 };
 

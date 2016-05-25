@@ -7,6 +7,7 @@ MANIFEST.SKIP
 README
 t/00-load.t
 t/basic.t
+t/exclusions.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
