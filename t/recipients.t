@@ -2,8 +2,9 @@
 
 use strict;
 use warnings;
-use Test::More tests => 7;
+use Test::More tests => 14;
 use Email::Sender::Transport::Redirect::Recipients;
+use Data::Dumper;
 
 {
     my $str = 'pippo@example.com';
@@ -18,6 +19,14 @@ use Email::Sender::Transport::Redirect::Recipients;
     foreach my $f (qw/to exclude/) {
         is_deeply $rec->$f, $hash{$f}, "$f is ok";
     }
+    is $rec->replace('racke@example.com'), 'racke@example.com';
+    is $rec->replace('racke@linuxia.de'), 'racke@linuxia.de';
+    is $rec->replace('Racke <racke@example.com>'), 'racke@example.com';
+    is $rec->replace('racke <racke@linuxia.de>'), 'racke@linuxia.de';
+    # diag Dumper($rec);
+    is $rec->replace(), 'pippo@example.com';
+    is $rec->replace('melmothx@gmail.com'), 'pippo@example.com';
+    is $rec->replace('Marco <melmothx@gmail.com>'), 'pippo@example.com';
 }
 
 {

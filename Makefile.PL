@@ -27,6 +27,7 @@ WriteMakefile(
         'Test::More' => 0,
         'Moo' => "1.001000",
         'Type::Tiny' => 1,
+        'Email::Valid' => 1,
         'Email::Sender' => "1.300000",
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
