@@ -20,7 +20,9 @@ WriteMakefile(
             IRC => 'irc://irc.freenode.net/#interchange',
         },
     },
-
+    BUILD_REQUIRES => {
+        'Email::Sender::Transport::Test' => 0,
+    },
     PREREQ_PM => {
         'Test::More' => 0,
         'Moo' => "1.001000",
@@ -30,3 +32,7 @@ WriteMakefile(
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Email-Sender-Transport-Redirect-*' },
 );
+
+# Local Variables:
+# cperl-indent-parens-as-block: t
+# End:
