@@ -39,6 +39,6 @@ $transport->send($email);
     is $obj->get_header('X-Intercepted-Cc'), 'Stefan Hornburg <racke@example.com>',
       "x-intercept-cc set";
     is $obj->get_header('To'), 'shop@nitesi.com', "to header correct";
-    is $obj->get_header('Cc'), undef, "cc removed";
+    is $obj->get_header('Cc'), 'shop@nitesi.com', "cc header replaced";
     diag $obj->as_string;
 }

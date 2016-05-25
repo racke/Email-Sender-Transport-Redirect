@@ -56,7 +56,8 @@ Defaults to C<X-Intercepted->.
 =cut
 
 use Moo;
-use Types::Standard qw/ArrayRef Str/;
+use Types::Standard qw/ArrayRef Str Object/;
+use Email::Sender::Transport::Redirect::Recipients;
 
 extends 'Email::Sender::Transport::Wrapper';
 
@@ -75,6 +76,16 @@ has 'intercept_prefix' => (
                            isa => Str,
                            default => 'X-Intercepted-',
                           );
+
+has recipients => (is => 'lazy',
+                        isa => Object);
+
+sub _build_recipients {
+    my $self = shift;
+    return Email::Sender::Transport::Redirect::Recipients->new($self->redirect_address);
+}
+
+
 
 =head1 METHOD MODIFIERS
 
@@ -101,12 +112,11 @@ around send_email => sub {
             $email_copy->set_header($self->intercept_prefix . $header,
                                     @values);
         }
-
-        $email_copy->set_header($header);
+        my @replace = map { $self->recipients->replace($_) } @values;
+        $email_copy->set_header($header, @replace);
     }
 
-    $email_copy->set_header('To', $self->redirect_address);
-    $env_copy->{to} = [$self->redirect_address];
+    $env_copy->{to} = [ $self->recipients->to ];
 
     return $self->$orig($email_copy, $env_copy, @rest);
 };
