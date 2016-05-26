@@ -5,7 +5,7 @@ NAME
 
 VERSION
 
-    Version 0.0004
+    Version 0.005
 
 SYNOPSIS
 
@@ -28,7 +28,9 @@ ATTRIBUTES
 
  redirect_address
 
-    Recipient email address for redirected emails.
+    Recipient email address for redirected emails. This value, which can be
+    either a string or an hashref, is passed to the
+    Email::Sender::Transport::Redirect::Recipients constructor.
 
  redirect_headers
 

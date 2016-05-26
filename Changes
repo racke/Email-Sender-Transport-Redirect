@@ -1,5 +1,11 @@
 Revision history for Email::Sender::Transport::Redirect
 
+0.005  Thu May 26 09:26:44 2016 CEST
+
+    [ENHANCEMENTS]
+
+    * Exclude email addresses from redirection (Marco Pessotto, GH #6, #7).
+
 0.0004 Fri Nov 13 09:38:44 2015 CET
 
     [BUG FIXES]
