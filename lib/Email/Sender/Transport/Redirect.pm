@@ -32,7 +32,9 @@ the original recipients.
 
 =head2 redirect_address
 
-Recipient email address for redirected emails.
+Recipient email address for redirected emails. This value, which can
+be either a string or an hashref, is passed to the
+L<Email::Sender::Transport::Redirect::Recipients> constructor.
 
 =head2 redirect_headers
 
@@ -56,7 +58,8 @@ Defaults to C<X-Intercepted->.
 =cut
 
 use Moo;
-use MooX::Types::MooseLike::Base qw/ArrayRef Str/;
+use Types::Standard qw/ArrayRef Str Object/;
+use Email::Sender::Transport::Redirect::Recipients;
 
 extends 'Email::Sender::Transport::Wrapper';
 
@@ -75,6 +78,16 @@ has 'intercept_prefix' => (
                            isa => Str,
                            default => 'X-Intercepted-',
                           );
+
+has recipients => (is => 'lazy',
+                        isa => Object);
+
+sub _build_recipients {
+    my $self = shift;
+    return Email::Sender::Transport::Redirect::Recipients->new($self->redirect_address);
+}
+
+
 
 =head1 METHOD MODIFIERS
 
@@ -101,13 +114,17 @@ around send_email => sub {
             $email_copy->set_header($self->intercept_prefix . $header,
                                     @values);
         }
-
-        $email_copy->set_header($header);
+        my @replace = map { $self->recipients->replace($_) } @values;
+        $email_copy->set_header($header, @replace);
     }
-
-    $email_copy->set_header('To', $self->redirect_address);
-    $env_copy->{to} = [$self->redirect_address];
-
+    # if the to was set in the envelope, replace those as well
+    if ($env_copy->{to} and @{$env_copy->{to}}) {
+        $env_copy->{to} = [ map { $self->recipients->replace($_) } @{$env_copy->{to}} ]
+    }
+    # no to in the envelope? then set it
+    else {
+        $env_copy->{to} = [ $self->recipients->to ];
+    }
     return $self->$orig($email_copy, $env_copy, @rest);
 };
 

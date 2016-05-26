@@ -12,3 +12,4 @@ Makefile$
 ^cover_db
 ^.*\.log
 ^.*\.swp$
+MYMETA\.(yml|json)
